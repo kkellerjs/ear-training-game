@@ -1,0 +1,103 @@
+
+<head>
+  <title>Ear Training</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<link rel="stylesheet" type = "text/css" href="stylesheet.css">
+  <script type="text/javascript" src ="eartraining.js"></script>
+</head>
+
+
+
+<!--- pop up ---->
+<div id="popUpWrapper">
+  <div id="popUp">
+     <!---top intro message--->
+      <h2 id="introHeader">Welcome to Ear Training!</h2>
+      <h2 id="badgeNameText" class="popUpText">First up, single-note training. Make sure your<br>volume is up, then click below when you're ready.</h2>
+      <div id="badgeDiv">
+        <i class="material-icons" id="badgeIcon">school</i>
+     </div>
+      <!--continue = for going to next item-->
+      <div id="continueButton" class="popButton">Let's get started!</div>
+    <div class="popButton" style="margin-top: 4px" id="freePlay">Free Play</div>
+  </div>
+</div>
+
+<!---page--->
+<!--<div id = "repeat">Repeat After Me</div> -->
+<div id="score">
+  <div class="achievement" id="achieve_1">
+    <i class="material-icons" style="color: grey">check</i>
+  </div>
+  <div class="achievement" id="achieve_2">
+    <i class="material-icons" style="color: grey">check</i>
+  </div>
+  <div class="achievement" id="achieve_3">
+    <i class="material-icons" style="color: grey">check</i>
+  </div>
+  <div class="achievement" id="achieve_4">
+    <i class="material-icons" style="color: grey">check</i>
+  </div>
+</div>
+  
+  
+<center><h1 id="levelName" class="title">Level 1</h1><h1 id="kicker" class="title">Single-Note Training</h1></center>
+
+<div id="controls">
+
+  <div id="record" class="control">
+    <i class="material-icons" id="recordIcon" style="color: grey">mic</i>
+  </div>
+  
+  <div id="playback" class="control">
+    <i class="material-icons" style="color: grey">play_arrow</i>
+  </div>
+  
+  
+  <div id="submit" class="control">
+    <i class="material-icons" style="color: grey">keyboard_arrow_right</i>
+  </div>
+</div>
+
+
+<div id="keyboardOuter">
+  
+  <div id="keyboardInner">
+  
+   
+  <div class="blackKeys keyboard no-clicks">
+    <div id="2"></div><div id="4">
+    </div><div class = "noSharp no-clicks">
+    </div><div id="7"></div><div id="9">
+    </div><div id="11">
+    </div><div class= "noSharp no-clicks">
+    </div><div id="14"></div><div id="16">
+    </div><div class="noSharp no-clicks">
+    </div><div id="19"></div><div id="21">
+    </div><div id="23"></div>
+  </div>
+
+  <div class = "whiteKeys keyboard no-clicks">
+    <div id="1"></div><div id="3"></div><div id="5">
+    </div><div id="6"></div><div id="8">
+    </div><div id="10"></div><div id="12">
+    </div><div id="13"></div><div id="15">
+    </div><div id="17"></div><div id="18">
+    </div><div id="20"></div><div id="22">
+    </div><div id="24"></div>
+  </div>
+
+</div>
+  
+  <div id="playAgain2" class="popButton">Play again</div>
+  
+  
+  <div id="badgeBar">
+    <div id="barTitle">My Badges</div>
+  </div>
+
+
+
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
