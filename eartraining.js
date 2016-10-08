@@ -38,7 +38,7 @@ function resize() { //----------------------------
   $(".control").css("margin", achieveMargin);
   //controls margin top
   $("#controls").css("margin-top", achieveMargin*7);
-   $("#levelName").css("margin-top", achieveMargin*7);
+   $("#levelName").css("margin-top", achieveMargin*5);
   
   //popup circle width
   var badgeDivWidth = achieveWidth * 1.7;
