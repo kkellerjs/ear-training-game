@@ -179,13 +179,6 @@ var score = { //--------------------------------------
   },
   
   is_level_correct: function() {
-    //check if anything's marked as wrong for level
-    for (var item in piano.level_notes) {
-      console.log("item number is " + item);
-      console.log("item note: " + piano.level_notes[item].notes);
-      console.log("correct? " + piano.level_notes[item].correct);
-    } //^^^^test
-    
     
     for (var item in piano.level_notes) {
       if (!piano.level_notes[item].correct) {return false;}
@@ -286,7 +279,7 @@ var score = { //--------------------------------------
     score.select_current_item();
     piano.initialize_training();
     piano.play_item();
-    console.log(piano.level_notes);
+   // console.log(piano.level_notes);
   },
   
   
@@ -522,7 +515,7 @@ var piano  =  { //------------------------------------
     var waitTime = 1000;
     waitTime *= piano.level_number_of_notes;
     
-    console.log("the wait time equals " + waitTime);
+  //  console.log("the wait time equals " + waitTime);
     
     var enableRecord = setTimeout(function() {
       $("#record").css("backgroundColor", "#00cc00");
@@ -542,7 +535,7 @@ var piano  =  { //------------------------------------
     
     piano.used_notes.push(notes);
     //save notes for current level
-    console.log("the current item is " + piano.currentItem);
+   // console.log("the current item is " + piano.currentItem);
     piano.level_notes[piano.currentItem].notes = notes;
    
     
@@ -581,9 +574,9 @@ var piano  =  { //------------------------------------
       location = notes_arr[i];
       noteVal = piano.notes[location];
       
-      console.log("notes_arr: "); console.log(notes_arr);
-      console.log("location of noteval is " + location);
-      console.log("note val is " + noteVal);
+    //  console.log("notes_arr: "); console.log(notes_arr);
+    //  console.log("location of noteval is " + location);
+    //  console.log("note val is " + noteVal);
       piano.play_freq(noteVal, ctx, beginTime);
       beginTime+= 0.7;
     }
@@ -594,7 +587,7 @@ var piano  =  { //------------------------------------
     beginTime = beginTime || 0;
     var osc = ctx.createOscillator();
     osc.type = "sine";
-    console.log("freq val: " + freq);
+ //   console.log("freq val: " + freq);
     osc.frequency.value = freq;
     var gainVal = 0.5;
     //adjust gain values for very high & low notes
@@ -604,7 +597,7 @@ var piano  =  { //------------------------------------
     if (freq > 2000) {gainVal -= 0.1;}
     
     gainVal = Math.floor(gainVal*10)/10;
-    console.log("Gainval: " + gainVal);
+//    console.log("Gainval: " + gainVal);
 
     var now = ctx.currentTime;
     var startTime = now + beginTime; //0 would be if want delay
@@ -620,8 +613,8 @@ var piano  =  { //------------------------------------
     var rampDown = startTime + (noteLength - 0.001);
     rampDown = Math.floor(rampDown * 10000)/10000;
     
-    console.log("rampup val: " + rampUp);
-    console.log("rampdown val: " + rampDown);
+   // console.log("rampup val: " + rampUp);
+   // console.log("rampdown val: " + rampDown);
     
     
     gain.gain.linearRampToValueAtTime(gainVal, rampUp);
@@ -807,7 +800,7 @@ $("#continueButton").click(function() {
       } else {
         
         //not done with level. go to next item
-        console.log("moving to next item");
+     //   console.log("moving to next item");
         score.next_item();
       }
 
@@ -860,18 +853,6 @@ $("#freePlay").click(function() {
 $("#playAgain2").click(function() {
   score.restart();
 })
-
-
-
-
-//--------for testing-----------
-$(document).keydown(function(e) {
-  if (e.keyCode == 32) {
-      score.level_success();
-  }
-});
-
-
 
 
 
