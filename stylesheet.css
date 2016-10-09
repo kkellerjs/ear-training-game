@@ -94,7 +94,8 @@ div.noSharp {
   margin-top: -100px;
 }
 
-#playback, #submit, #record{
+#playback, #submit, #record, #playInfo,
+#submitInfo, #recordInfo{
   padding: 0.5%;
   border-radius: 50%;
   background-color: lightgrey;
@@ -127,6 +128,14 @@ div.noSharp {
   padding: 30px;
 }
 
+#infoDiv {
+  display: none;
+}
+
+#box1, #box2, #box3 {
+  display: inline-block;
+}
+
 .popButton {
   width: 80%;
   border: 2px solid black;
@@ -134,6 +143,7 @@ div.noSharp {
   background-color: lightgrey; 
   margin-top: 50px;
 }
+
 
 /* for use in very last popup */
 #freePlay {
