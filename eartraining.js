@@ -38,7 +38,7 @@ function resize() { //----------------------------
   $(".control").css("margin", achieveMargin);
   //controls margin top
   $("#controls").css("margin-top", achieveMargin*7);
-   $("#levelName").css("margin-top", achieveMargin*5);
+   $("#levelName").css("margin-top", achieveMargin*4);
   
   //popup circle width
   var badgeDivWidth = achieveWidth * 1.7;
@@ -85,6 +85,7 @@ function resize() { //----------------------------
   $(".popButton").css("font-size", popButtonfontsize);
   $("#badgeIcon").css("font-size", badgeIconfontsize);
   $("#barTitle").css("font-size", popButtonfontsize);
+  $(".instructionsFont").css("font-size", popButtonfontsize);
 } //------------------------------------------------
 
 
@@ -120,6 +121,21 @@ var score = { //--------------------------------------
   reviewing: false,
   retry_enabled: false,
   
+  
+  //----initial message---------------------------
+  instructions: function() {
+    
+    $("#popUpWrapper").css("display", "none");
+    score.update_popUp("", "Use the <span style='color: #3333cc'>mic </span>to start and stop <br>recording your answer, <br>the <span style='color: #ff33cc'>play arrow</span> for playback, <br>and the <span style='color: #009900'>submit arrow</span> to submit your answer.", score.badge.default.icon, "Let's get started!");
+    
+    $("#badgeDiv").css("display", "none");
+    $("#infoDiv").css("display", "block");
+    
+    $("#popUpWrapper").css("display", "inline-block");
+   
+    
+  },
+  
   //----checking results---------------------------
   is_user_correct: function() {
     //return true if correct, else false
@@ -133,6 +149,7 @@ var score = { //--------------------------------------
   correct_answer: function() {
     
     score.retry_enabled = false;
+    score.reviewing = false;
     
     //check off current item
     score.check_off_item(piano.currentItem);
@@ -179,6 +196,7 @@ var score = { //--------------------------------------
   },
   
   is_level_correct: function() {
+    //check if anything's marked as wrong for level 
     
     for (var item in piano.level_notes) {
       if (!piano.level_notes[item].correct) {return false;}
@@ -279,7 +297,7 @@ var score = { //--------------------------------------
     score.select_current_item();
     piano.initialize_training();
     piano.play_item();
-   // console.log(piano.level_notes);
+    //console.log(piano.level_notes);
   },
   
   
@@ -305,7 +323,7 @@ var score = { //--------------------------------------
   
   start_new_level: function() {
     $("#popUpWrapper").css("display", "none");
-    piano.currentLevel++;
+    piano.currentLevel++;"#00cc00"
     piano.level_number_of_notes++; 
     score.reset();
     
@@ -515,8 +533,6 @@ var piano  =  { //------------------------------------
     var waitTime = 1000;
     waitTime *= piano.level_number_of_notes;
     
-  //  console.log("the wait time equals " + waitTime);
-    
     var enableRecord = setTimeout(function() {
       $("#record").css("backgroundColor", "#00cc00");
     }, waitTime); 
@@ -535,7 +551,6 @@ var piano  =  { //------------------------------------
     
     piano.used_notes.push(notes);
     //save notes for current level
-   // console.log("the current item is " + piano.currentItem);
     piano.level_notes[piano.currentItem].notes = notes;
    
     
@@ -573,10 +588,7 @@ var piano  =  { //------------------------------------
     for (var i = 0; i < notes_arr.length; i++) {
       location = notes_arr[i];
       noteVal = piano.notes[location];
-      
-    //  console.log("notes_arr: "); console.log(notes_arr);
-    //  console.log("location of noteval is " + location);
-    //  console.log("note val is " + noteVal);
+     
       piano.play_freq(noteVal, ctx, beginTime);
       beginTime+= 0.7;
     }
@@ -587,7 +599,7 @@ var piano  =  { //------------------------------------
     beginTime = beginTime || 0;
     var osc = ctx.createOscillator();
     osc.type = "sine";
- //   console.log("freq val: " + freq);
+    //console.log("freq val: " + freq);
     osc.frequency.value = freq;
     var gainVal = 0.5;
     //adjust gain values for very high & low notes
@@ -597,8 +609,7 @@ var piano  =  { //------------------------------------
     if (freq > 2000) {gainVal -= 0.1;}
     
     gainVal = Math.floor(gainVal*10)/10;
-//    console.log("Gainval: " + gainVal);
-
+    
     var now = ctx.currentTime;
     var startTime = now + beginTime; //0 would be if want delay
     var noteLength = .5;
@@ -613,8 +624,8 @@ var piano  =  { //------------------------------------
     var rampDown = startTime + (noteLength - 0.001);
     rampDown = Math.floor(rampDown * 10000)/10000;
     
-   // console.log("rampup val: " + rampUp);
-   // console.log("rampdown val: " + rampDown);
+    //console.log("rampup val: " + rampUp);
+    //console.log("rampdown val: " + rampDown);
     
     
     gain.gain.linearRampToValueAtTime(gainVal, rampUp);
@@ -745,10 +756,18 @@ $("#continueButton").click(function() {
   
   switch(label) {
       
-    case "Let's get started!":  
+      
+    case "Instructions, please!":
+      score.instructions();
+      break;
+      
+      
+    case "Let's get started!": //********** 
       
       //start the training
       $("#popUpWrapper").css("display", "none");
+      $("#badgeDiv").css("display", "inline-block");
+      $("#infoDiv").css("display", "none");
       piano.initialize_training();
       piano.play_item();
       break;
@@ -800,7 +819,7 @@ $("#continueButton").click(function() {
       } else {
         
         //not done with level. go to next item
-     //   console.log("moving to next item");
+        //////console.log("moving to next item");
         score.next_item();
       }
 
@@ -853,7 +872,6 @@ $("#freePlay").click(function() {
 $("#playAgain2").click(function() {
   score.restart();
 })
-
 
 
 
