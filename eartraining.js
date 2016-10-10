@@ -149,7 +149,7 @@ var score = { //--------------------------------------
   correct_answer: function() {
     
     score.retry_enabled = false;
-    score.reviewing = false;
+   // score.reviewing = false;
     
     //check off current item
     score.check_off_item(piano.currentItem);
@@ -228,6 +228,9 @@ var score = { //--------------------------------------
 
     //stow badge
     score.stow_badge();
+   
+    //if in review, turn off
+    score.reviewing = false;
     
     score.update_popUp("Victory is yours!", "You are an ear-training champion!", "cake", "Play again");
     $("#freePlay").css("display", "block");
