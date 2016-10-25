@@ -326,7 +326,7 @@ var score = { //--------------------------------------
   
   start_new_level: function() {
     $("#popUpWrapper").css("display", "none");
-    piano.currentLevel++;"#00cc00"
+    piano.currentLevel++;
     piano.level_number_of_notes++; 
     score.reset();
     
@@ -523,8 +523,11 @@ var piano  =  { //------------------------------------
     $("#playAgain2").css("display", "block");
     $("#score").css("display", "none");
     
-    //deselect item #4
+    //deselect all items in case you were in review
     document.getElementById("achieve_4").style.borderBottom = "3px solid darkgreen";
+    document.getElementById("achieve_3").style.borderBottom = "3px solid darkgreen";
+    document.getElementById("achieve_2").style.borderBottom = "3px solid darkgreen";
+    document.getElementById("achieve_1").style.borderBottom = "3px solid darkgreen";
 
   },
   //-------------------------------------------------------------------
